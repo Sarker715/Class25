@@ -31,7 +31,8 @@ step 2: TextView EditText initialization
 step 3: RequestQueue inititalization
 step 4: StringRequest initializations
 step 5: add stringrequest to requestqueue
-
+step 6: install xamp server > database create > table create
+step 7: cmd > ipconfig > ip
 
  */
 
@@ -74,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void fetchData(View view) {
-        String url = "http://biswajitdas.me/projects/androidcourse/index.php";
+        String url = "http://192.168.1.112/phpfiles/index.php";
 
         final StringBuilder builder = new StringBuilder();
 
@@ -111,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void submitData(View view) {
-        String url = "http://biswajitdas.me/projects/androidcourse/signup.php";
+        String url = "http://192.168.1.112/phpfiles/signup.php";
 
         final String email = etEmail.getText().toString();
         final String password = etPassword.getText().toString();
