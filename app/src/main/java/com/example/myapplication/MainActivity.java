@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void fetchData(View view) {
-        String url = "http://192.168.1.112/phpfiles/index.php";
+        String url = "http://192.168.50.115/phpfiles/index.php";
 
         final StringBuilder builder = new StringBuilder();
 

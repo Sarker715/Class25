@@ -4,10 +4,10 @@
 $email = $_POST['email'];
 $password = $_POST['password'];
 
-$user = "biswajit_root";
-$pass = "biswajit_root$$$";
+$user = "root";
+$pass = "";
 $host= "localhost";
-$dbname="biswajit_androidcourse";
+$dbname="androidcourse";
 
 $con = mysqli_connect($host,$user,$pass,$dbname);
 

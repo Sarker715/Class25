@@ -1,6 +1,6 @@
 <?php
 	try{
-		$db = new PDO('mysql:host=localhost;dbname=biswajit_androidcourse;charset=utf8', 'biswajit_root', 'biswajit_root$$$');
+		$db = new PDO('mysql:host=localhost;dbname=androidcourse;charset=utf8', 'root', '');
 		//echo "Connected";
 	}catch (PDOException $e) {
 		//print "Error!: " . $e->getMessage() . "<br/>";
