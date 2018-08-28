@@ -1,11 +1,10 @@
 package com.example.myapplication;
 
-import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -15,10 +14,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -37,83 +32,33 @@ step 7: cmd > ipconfig > ip
  */
 
 public class MainActivity extends AppCompatActivity {
-    private TextView tvResult;
+
     private EditText etEmail;
     private EditText etPassword;
 
     private RequestQueue requestQueue;
-    private ProgressDialog dialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tvResult = findViewById(R.id.tv_result);
+
         etEmail = findViewById(R.id.et_email);
         etPassword = findViewById(R.id.et_password);
 
         requestQueue = Volley.newRequestQueue(this);
 
-        dialog = new ProgressDialog(this);
-        dialog.setTitle("Loading Data");
-        dialog.setMessage("Please wait...");
-        dialog.setCancelable(false);
 
     }
 
-    private void showDialog(){
-        if (!dialog.isShowing()){
-            dialog.show();
-        }
-    }
-
-    private void cancelDialog(){
-        if(dialog.isShowing()){
-            dialog.cancel();
-        }
-    }
 
 
-    public void fetchData(View view) {
-        String url = "http://192.168.50.115/phpfiles/index.php";
 
-        final StringBuilder builder = new StringBuilder();
 
-        showDialog();
-
-        StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONArray root = new JSONArray(response);
-                    for(int i = 0; i<root.length(); i++) {
-                        JSONObject student = root.getJSONObject(i);
-
-                        builder.append(student.getString("email")+"\n");
-                        builder.append(student.getString("password") + "\n\n");
-                    }
-
-                    cancelDialog();
-                    tvResult.setText(builder.toString());
-                } catch (JSONException e) {
-                    cancelDialog();
-                    e.printStackTrace();
-                }
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                cancelDialog();
-                Toast.makeText(MainActivity.this, "Failed to Fetch Data", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        requestQueue.add(request);
-    }
 
     public void submitData(View view) {
-        String url = "http://192.168.50.115/phpfiles/signup.php";
+        String url = "http://192.168.50.193/phpfiles/signup.php";
 
         final String email = etEmail.getText().toString();
         final String password = etPassword.getText().toString();
@@ -142,10 +87,12 @@ public class MainActivity extends AppCompatActivity {
 
         requestQueue.add(request);
 
-        fetchData(view);
+
     }
 
     public void signIn(View view) {
+
+        startActivity(new Intent(MainActivity.this, SignInActivity.class));
 
     }
 }
