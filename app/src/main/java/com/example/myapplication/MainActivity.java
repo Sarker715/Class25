@@ -87,7 +87,8 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     JSONArray root = new JSONArray(response);
                     for(int i = 0; i<root.length(); i++) {
-                        JSONObject student = (JSONObject) root.get(i);
+                        JSONObject student = root.getJSONObject(i);
+
                         builder.append(student.getString("email")+"\n");
                         builder.append(student.getString("password") + "\n\n");
                     }
@@ -112,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void submitData(View view) {
-        String url = "http://192.168.1.112/phpfiles/signup.php";
+        String url = "http://192.168.50.115/phpfiles/signup.php";
 
         final String email = etEmail.getText().toString();
         final String password = etPassword.getText().toString();
@@ -142,6 +143,10 @@ public class MainActivity extends AppCompatActivity {
         requestQueue.add(request);
 
         fetchData(view);
+    }
+
+    public void signIn(View view) {
+
     }
 }
 
